@@ -86,7 +86,7 @@ submitBudgetForm(){
  // saving
  let expenseStr = JSON.stringify(expense)
  localStorage.setItem("saved", expenseStr);
-// let expensesArr = localStorage.getItem(expenseStr)
+let expensesArr = localStorage.getItem(expenseStr)
 let expenses = JSON.parse(localStorage.getItem("saved"));
 console.log(expenses);
 
@@ -95,27 +95,26 @@ console.log(expenses);
       this.addExpense(expenses);
       this.showBalance();
       
-     
-  
+      console.log(this.itemList);
     }
   }
 
-  addExpense(expense){
+  addExpense(expenses){
     const div = document.createElement('div');
     div.classList.add('expense');
     div.innerHTML = `
     <div class="expense">
         <div class="expense-item d-flex justify-content-between align-items-baseline">
 
-         <h6 class="expense-title mb-0 text-uppercase list-item">${expense.title}</h6>
-         <h5 class="expense-amount mb-0 list-item">${expense.amount}</h5>
+         <h6 class="expense-title mb-0 text-uppercase list-item">${expenses.title}</h6>
+         <h5 class="expense-amount mb-0 list-item">${expenses.amount}</h5>
 
          <div class="expense-icons list-item">
 
-          <a href="#" class="edit-icon mx-2" data-id="${expense.id}">
+          <a href="#" class="edit-icon mx-2" data-id="${expenses.id}">
            <i class="fas fa-edit"></i>
           </a>
-          <a href="#" class="delete-icon" data-id="${expense.id}">
+          <a href="#" class="delete-icon" data-id="${expenses.id}">
            <i class="fas fa-trash"></i>
           </a>
          </div>
@@ -134,6 +133,7 @@ console.log(expenses);
       },0)
     }
     this.expenseAmount.textContent = total;
+    console.log(this.itemList);
     return total;
   }
   
